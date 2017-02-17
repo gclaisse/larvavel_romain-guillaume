@@ -29,6 +29,10 @@ Route::resource('article', 'ArticleController');
 
 Route::get('/user', 'HomeController@indexhome');
 
+Route::resource('/contact', 'ContactController');
+
+
+
 
 
 
