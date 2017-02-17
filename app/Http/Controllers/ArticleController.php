@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Com;
 
 class ArticleController extends Controller
 {
@@ -91,7 +91,9 @@ class ArticleController extends Controller
             $article = Article::find($id);
 
 
-            return view ('articles.show', ['article' => $article
+            return view ('articles.show', [
+                'article' => $article,
+
 
             ]);
 
@@ -159,6 +161,26 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('article.index')->with('success', 'Article supprimé');
+
+    }
+    public function postComment(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+
+        //$comment = new Comment();
+        //$comment->comment = $request->get('comment');
+        //$comment->article_id = $article->id;
+        //$comment->save();
+
+        Com::create([
+            'commentaire'    => $request->get('commentaire'),
+            'user_id' => Auth::user()->id,
+            'article_id' => $article->id
+        ]);
+
+
+
+        return redirect()->back()->with('success', 'Message posté');
 
     }
 
