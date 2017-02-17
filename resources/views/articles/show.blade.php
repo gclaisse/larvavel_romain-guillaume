@@ -22,7 +22,23 @@
         <input type="hidden" name="_method" value="DELETE">
         <input value="Supprimer" type="submit" class="btn btn-primary">
     </form>
-    Fin de la discussion
+    <h2>Commentaires :</h2>
+    <ul>
+        @forelse($article->coms as $com)
+            {{$com->user->name}}
+            <li>{{$com->commentaire}}</li>
+        @empty
+            aucun commentaire
+        @endforelse
+
+    </ul>
+    <h3>Commenter :</h3>
+    <form method="POST" action="{{route('article.comment', $article->id)}}">
+        {{csrf_field()}}
+        <textarea name="commentaire" id="" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit" value="Envoyer">
+    </form>
 
 
 

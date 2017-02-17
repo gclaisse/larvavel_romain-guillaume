@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Com extends Model
 {
-
     /**
      * The table
      *
      * @var string
      */
-    protected $table = "articles";
+    protected $table = "coms";
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +20,7 @@ class Article extends Model
      */
 
     protected $fillable = [
-        'user_id', 'title', 'content',
+        'user_id', 'commentaire', 'article_id',
     ];
 
     /**
@@ -36,8 +35,7 @@ class Article extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
-    public function coms() {
-        return $this->hasMany('App\Com');
+    public function article() {
+        return $this->belongsTo('App\Article');
     }
-
 }

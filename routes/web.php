@@ -29,6 +29,11 @@ Route::resource('article', 'ArticleController');
 
 Route::get('/user', 'HomeController@indexhome');
 
+Route::post('article/{id}/comment', [
+    'as'   => 'article.comment',
+    'uses' => 'ArticleController@postComment'
+]);
+
 
 
 
