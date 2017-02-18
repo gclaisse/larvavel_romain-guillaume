@@ -30,12 +30,15 @@ Route::resource('article', 'ArticleController');
 Route::get('/user', 'HomeController@indexhome');
 
 Route::resource('/contact', 'ContactController');
+
 Route::post('article/{id}/comment', [
     'as'   => 'article.comment',
     'uses' => 'ArticleController@postComment'
 ]);
 
+Route::get('image-upload','ImageController@imageUpload');
 
+Route::post('image-upload','ImageController@imageUploadPost');
 
 
 
