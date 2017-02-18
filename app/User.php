@@ -33,4 +33,21 @@ class User extends Authenticatable
     public function coms() {
         return $this->hasMany('App\Com');
     }
+
+    protected static function  boot()
+    {
+        parent::boot();
+        self::deleting(function (User $user){
+
+            foreach ($user->articles as $articles)
+            {
+                $articles->delete();
+            }
+
+            foreach ($user->coms as $coms)
+            {
+                $coms->delete();
+            }
+        });
+    }
 }

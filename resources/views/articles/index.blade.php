@@ -19,15 +19,9 @@
                 <div class="col-md-6">
                     <a href="{{ route('article.show', $article->id) }}" class="btn btn-info">View Task</a>
 
-                    <a href="{{ route('article.create', $article->id) }}" class="btn btn-info">Create Task</a>
 
-                    <a href="{{ route('article.edit', $article->id) }}" class="btn btn-primary">Edit Task</a>
 
-                    <form method="POST" action="{{ route('article.destroy', $article->id) }}">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input value="Supprimer" type="submit" class="btn btn-primary">
-                    </form>
+
                 </div>
             </div>
         @empty
@@ -35,7 +29,7 @@
         @endforelse
         {{$articles->links()}}
     </ul>
-
+    <a href="{{ route('article.create', $article->id) }}" class="btn btn-info">Create Task</a>
 
 
 @endsection

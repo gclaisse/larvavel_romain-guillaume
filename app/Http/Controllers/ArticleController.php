@@ -17,12 +17,6 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::paginate(2);
-
-
-
-
-
-
         return view('articles.index' , [
             'articles' => $articles
         ]);
@@ -160,7 +154,7 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        return redirect()->route('article.index')->with('success', 'Article supprimé');
+        return redirect()->back()->with('success', 'Article supprimé');
 
     }
     public function postComment(Request $request, $id)
@@ -182,6 +176,15 @@ class ArticleController extends Controller
 
         return redirect()->back()->with('success', 'Message posté');
 
+    }
+
+    public function destroyCom($id)
+    {
+        $comment = Com::find($id);
+
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Commentaire supprimé');
     }
 
 

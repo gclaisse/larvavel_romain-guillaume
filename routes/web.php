@@ -40,6 +40,20 @@ Route::get('image-upload','ImageController@imageUpload');
 
 Route::post('image-upload','ImageController@imageUploadPost');
 
+Route::delete('article/{id}/comment', [
+    'as'   => 'article.destroyCom',
+    'uses' => 'ArticleController@destroyCom'
+]);
+Route::get('/admin', 'AdminController@adminhome');
+Route::get('/admin/show/{id}', 'AdminController@show');
+Route::get('/admin/articles', 'AdminController@articlesAdmin');
+Route::get('/admin/userlist', 'AdminController@userAdmin');
+
+Route::delete('/admin/userlist/{id}', [
+    'as'   => 'admin.destroyUser',
+    'uses' => 'AdminController@destroyUser'
+]);
+
 
 
 

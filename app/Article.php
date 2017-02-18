@@ -40,4 +40,17 @@ class Article extends Model
         return $this->hasMany('App\Com');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function (Article $article){
+
+            foreach ($article->coms as $coms)
+            {
+                $coms->delete();
+            }
+        });
+    }
+
 }
