@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
     <h1>Article n°{{$article->id}}</h1>
 
     <ul>
