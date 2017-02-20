@@ -59,6 +59,26 @@
                             <li>
                                 <a href="{{ url('/article') }}">Articles</a>
                             </li>
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Messages <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/messages">Voir les Messages @include('messenger.unread-count')</a></li>
+                                    <li><a href="/messages/create">Creer un nouveau message</a></li>
+                                </ul>
+                            </li>
+
+
+
+
+
+
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
