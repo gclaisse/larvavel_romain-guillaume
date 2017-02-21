@@ -36,9 +36,7 @@ Route::post('article/{id}/comment', [
     'uses' => 'ArticleController@postComment'
 ]);
 
-Route::get('image-upload','ImageController@imageUpload');
 
-Route::post('image-upload','ImageController@imageUploadPost');
 
 Route::delete('article/{id}/comment', [
     'as'   => 'article.destroyCom',
@@ -62,7 +60,11 @@ Route::group(['prefix' => 'messages'], function () {
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
 
+Route::get('imageUploadForm', 'ImageController@upload' );
 
+Route::post('imageUploadForm', 'ImageController@store' );
+
+Route::get('showLists', 'ImageController@show' );
 
 
 

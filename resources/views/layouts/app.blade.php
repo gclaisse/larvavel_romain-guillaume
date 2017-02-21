@@ -85,6 +85,17 @@
                                 </ul>
                             </li>
 
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Images <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/showLists">Voir les Images </a></li>
+                                    <li><a href="imageUploadForm">upload une nouvelle image</a></li>
+                                </ul>
+                            </li>
+
 
 
 

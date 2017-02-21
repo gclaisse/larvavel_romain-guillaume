@@ -1,40 +1,64 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+<?php namespace App\Http\Controllers;
 use App\Http\Requests;
+use Carbon\Carbon;
+use Guzzle\Tests\Plugin\Redirect;
+use App\Image;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
-class ImageController extends Controller
-{
+class ImageController extends Controller {
 
     /**
-     * Create view file
+     * Show the form for uploading a new resource.
      *
-     * @return void
+     * @return Response
      */
-    public function imageUpload()
-    {
-        return view('image-upload');
+    public function upload(){
+        // Redirect to image upload form
+
+        return view('imageupload');
     }
 
     /**
-     * Manage Post Request
+     * Store a newly uploaded resource in storage.
      *
-     * @return void
+     * @return Response
      */
-    public function imageUploadPost(Request $request)
+    public function store(Request $request)
     {
+        $image = new Image();
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required',
+            'image' => 'required'
         ]);
+        $image->title = $request->title;
+        $image->description = $request->description;
+        if($request->hasFile('image')) {
+            $file = Input::file('image');
+            //getting timestamp
+            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
 
-        $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $imageName);
+            $name = $timestamp. '-' .$file->getClientOriginalName();
 
-        return back()
-            ->with('success','Image Uploaded successfully.')
-            ->with('path',$imageName);
+            $image->filePath = $name;
+
+            $file->move(public_path().'/images/', $name);
+        }
+        $image->save();
+
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function show(Request $request)
+    {
+        $images = Image::all();
+        return view('showLists', compact('images'));
+
+    }
+
 
 }
