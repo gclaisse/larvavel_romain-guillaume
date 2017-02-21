@@ -38,9 +38,74 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Retour à l'accueil</a></li>
+                <li><a href="/home">HOME</a></li>
+                <!-- <li><a href="/">Retour à l'accueil</a></li>
                 <li><a href="/messages">Messages @include('messenger.unread-count')</a></li>
-                <li><a href="/messages/create">Create New Message</a></li>
+                <li><a href="/messages/create">Créer un Message</a></li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @else
+                    <li>
+                        <a href="{{ url('/admin') }}">Admin</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/article') }}">Articles</a>
+                    </li>
+
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Messages <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/messages">Voir les Messages @include('messenger.unread-count')</a></li>
+                            <li><a href="/messages/create">Creer un nouveau message</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Images <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/showLists">Voir les Images </a></li>
+                            <li><a href="imageUploadForm">upload une nouvelle image</a></li>
+                        </ul>
+                    </li>
+
+
+
+
+
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div>

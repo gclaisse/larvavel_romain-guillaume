@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Save', array( 'class'=>'btn btn-danger form-control' )) !!}
+            {!! Form::submit('Save', array( 'class'=>'btn btn-success form-control' )) !!}
         </div>
 
         {!! Form::close() !!}

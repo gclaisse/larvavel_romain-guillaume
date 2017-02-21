@@ -45,7 +45,7 @@ class ImageController extends Controller {
             $file->move(public_path().'/images/', $name);
         }
         $image->save();
-
+        return redirect('/home');
     }
 
     /**

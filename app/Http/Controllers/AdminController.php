@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     public function articlesAdmin()
     {
-        $articles = Article::paginate(2);
+        $articles = Article::paginate(6);
         return view('admin.articles' , [
             'articles' => $articles
         ]);
