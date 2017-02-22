@@ -5,19 +5,17 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-
-                    <div class="panel-body">
+                    <div class="panel-body col-md-offset-1">
                         @if(Auth::check())
                         <h1>Liste des utilisateurs</h1>
                         @forelse($users as $user)
-                            <li>{{$user->name}}</li>
+                            <h4>{{$user->name}}</h4>
                             <form method="POST" action="{{ route('admin.destroyUser', $user->id) }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input value="Supprimer" type="submit" class="btn btn-primary">
+                                <input value="Supprimer" type="submit" class="btn btn-sm btn-danger">
                             </form>
-                            <br>
+                            <hr>
                         @empty
                             <h2>Aucun utilisateur</h2>
                         @endforelse

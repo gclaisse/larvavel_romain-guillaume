@@ -13,11 +13,12 @@
 
                         @forelse($articles as $article)
                             <br>
-                            <li>{{ $article->title}},
-                                Utilisateur : {{$article->user->name }}</li>
+                            <h2>{{ $article->title}}</h2>
+                            <strong>Créé par {{$article->user->name }}</strong>
+                            <hr>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <a href="{{ url('/admin/show', $article->id) }}" class="btn btn-info">Voir</a>
 
                                     <a href="{{ route('article.edit', $article->id) }}" class="btn btn-primary">Modifier</a>
@@ -25,7 +26,7 @@
                                     <form method="POST" action="{{ route('article.destroy', $article->id) }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input value="Supprimer" type="submit" class="btn btn-primary">
+                                        <input value="Supprimer" type="submit" class="btn btn-danger">
                                     </form>
                                 </div>
                             </div>
